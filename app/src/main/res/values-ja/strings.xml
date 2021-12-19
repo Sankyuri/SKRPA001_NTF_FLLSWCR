@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">通知でフラッシュライト操作器</string>
+    <string name="txv_show_notification">通知を表示する？</string>
+    <string name="btn_show">表示</string>
+    <string name="btn_hide">非表示</string>
+    <string name="ntf_txv_text">フラッシュライト切り替え</string>
+    <string name="ntf_imv_dsc">アイコン</string>
+    <string name="ntf_imb_dsc">閉じる</string>
+    <string name="ntf_channelname">フラッシュライトを切り替えるやつ</string>
+</resources>
