@@ -8,4 +8,8 @@
     <string name="ntf_imv_dsc">AppIcon</string>
     <string name="ntf_imb_dsc">Close</string>
     <string name="ntf_channelname">Flashlight Switcher</string>
+    <string name="adl_perm_title">Need the Post Notification Permission!</string>
+    <string name="adl_perm_msg">This app reqires the Post Notification permission. This notification is flashlight switcher.</string>
+    <string name="adl_perm_btn_ok">Add permission</string>
+    <string name="adl_perm_btn_cancel">Shut up</string>
 </resources>

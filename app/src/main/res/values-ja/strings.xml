@@ -8,4 +8,8 @@
     <string name="ntf_imv_dsc">アイコン</string>
     <string name="ntf_imb_dsc">閉じる</string>
     <string name="ntf_channelname">フラッシュライトを切り替えるやつ</string>
+    <string name="adl_perm_title">通知の送信のために権限が必要です！</string>
+    <string name="adl_perm_msg">このアプリは通知を送信するための権限が必要です。この通知はフラッシュライト切り替えを行うためのものです。</string>
+    <string name="adl_perm_btn_ok">権限をあげる</string>
+    <string name="adl_perm_btn_cancel">黙れ</string>
 </resources>

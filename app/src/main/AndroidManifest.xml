@@ -1,13 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="jp.sankyuri.tool.notificationflashlightswitcher">
+<manifest
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
 
     <application
         android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
         android:icon="@drawable/im_app_icon"
         android:label="@string/app_name"
+        android:roundIcon="@drawable/im_app_icon"
         android:supportsRtl="true"
-        android:theme="@style/Theme.NotificationFlashlightSwitcher">
+        android:theme="@style/Theme.NotificationFlashlightSwitcher"
+        tools:targetApi="31">
         <activity
             android:name=".MainActivity"
             android:exported="true">
@@ -28,7 +35,6 @@
                 <action android:name="SwitchTorch" />
             </intent-filter>
         </receiver>
-
     </application>
 
 </manifest>

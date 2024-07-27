@@ -1,5 +1,4 @@
 package jp.sankyuri.tool.notificationflashlightswitcher
-
 import android.content.Context
 import android.hardware.camera2.CameraAccessException
 import android.hardware.camera2.CameraManager
@@ -8,16 +7,12 @@ import android.os.Build
 import android.widget.Toast
 import java.lang.Exception
 
-import kotlin.jvm.internal.Intrinsics
-
-
-
 
 class FlashlightSwitcher {
 
     companion object {
 
-        var OnTorch: Boolean = false
+        var IsTorchOn: Boolean = false
 
 
         private var cm_cam: android.hardware.Camera? = null
@@ -30,16 +25,16 @@ class FlashlightSwitcher {
 
 
         fun turn( context: Context, flag: Boolean ) {
-            if (OnTorch == flag) {
+            if (IsTorchOn == flag) {
                 return
             }
             if (Build.VERSION_CODES.M <= Build.VERSION.SDK_INT) {
                 val localCameraManager = context.getSystemService(Context.CAMERA_SERVICE) as CameraManager
                 val camId = localCameraManager.cameraIdList[0]
-                if (flag != OnTorch) {
-                    OnTorch = ! OnTorch
+                if (flag != IsTorchOn) {
+                    IsTorchOn = ! IsTorchOn
                     try {
-                        localCameraManager.setTorchMode( camId, OnTorch )
+                        localCameraManager.setTorchMode( camId, IsTorchOn )
                     }
                     catch ( e: CameraAccessException ) {
                         Toast.makeText( context, e.message, Toast.LENGTH_SHORT ).show()

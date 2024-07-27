@@ -1,22 +1,27 @@
 package jp.sankyuri.tool.notificationflashlightswitcher
-
+import android.Manifest
+import android.app.AlertDialog
 import android.app.Notification
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.os.Build
+import android.os.Build.VERSION_CODES
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.RemoteViews
+import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
-import java.util.*
 
 
 class MainActivity : AppCompatActivity() {
+
+    private val reqCodePerm = 392392392
 
     private var ntfChId = "unused_on_older_than_oreo"
 
@@ -65,6 +70,10 @@ class MainActivity : AppCompatActivity() {
     fun btnShowOnClickHandler(
             view: View? )
     {
+        // Request notification permission.
+        // If not allowed then return.
+        if (!reqPerm()) {  return  }
+
         // Create MainActivity opener intent (main notification event)
         val ntfPndMain   = createMainPendingIntent()
         // Create switch torch mode activity intent
@@ -179,6 +188,45 @@ class MainActivity : AppCompatActivity() {
     {
         val ntfMng = getSystemService( Context.NOTIFICATION_SERVICE ) as NotificationManager
         ntfMng.notify( R.string.app_name, ntf )
+    }
+
+
+    // Request notification permission.
+        // If not allowed then return false.
+    private fun reqPerm()
+    : Boolean
+    {
+        var valPerm = PackageManager.PERMISSION_GRANTED
+
+        if (VERSION_CODES.TIRAMISU <= Build.VERSION.SDK_INT)
+        {
+            // Check permission granted.
+            valPerm =
+                checkSelfPermission( Manifest.permission.POST_NOTIFICATIONS )
+            // If permission is not granted then request.
+            if ( valPerm != PackageManager.PERMISSION_GRANTED )
+            {
+                showPermReqMsg()
+            }
+
+        }
+        return valPerm == PackageManager.PERMISSION_GRANTED
+    }
+
+
+    @RequiresApi(VERSION_CODES.TIRAMISU)
+    private fun showPermReqMsg()
+    {
+        AlertDialog.Builder( this )
+            .setTitle( R.string.adl_perm_title )
+            .setMessage( R.string.adl_perm_msg )
+            .setPositiveButton( R.string.adl_perm_btn_ok ) { dialog, which ->
+                requestPermissions( arrayOf( Manifest.permission.POST_NOTIFICATIONS ), reqCodePerm )
+            }
+            .setNegativeButton( R.string.adl_perm_btn_cancel ) { _, _ ->
+                // dn
+            }
+            .show()
     }
 
 
